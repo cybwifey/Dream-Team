@@ -2,6 +2,30 @@
 Using data science and artificial intelligence to develop data-driven solutions that support aging populations and improve chronic disease management
 
 
+## 📁 Dream-Tam Repository/Project Structure
+Dream-Team/
+├── README.md                  # General project info & Git instructions (existing)
+├── docs/
+│   ├── proposal.md            # Draft & final versions of the project proposal
+│   ├── literature_review.md   # Key papers and summary notes
+│   └── meetings/              # Agendas and meeting minutes
+├── data/
+│   ├── raw/                   # Unprocessed original datasets
+│   └── processed/             # Cleaned and preprocessed data
+├── code/
+│   ├── exploratory/           # EDA scripts & notebooks
+│   ├── preprocessing/         # Data cleaning scripts
+│   ├── modeling/              # Predictive model development scripts
+│   └── validation/            # Model evaluation scripts
+├── results/
+│   ├── figures/               # Visualization outputs
+│   └── tables/                # Statistical summaries & performance metrics
+└── deliverables/
+    ├── manuscript/            # Final manuscript & abstract
+    ├── poster/                # Poster drafts & final version
+    └── video/                 # Presentation videos
+
+
 ## Getting started + Git Workflow Instructions
 Here’s how we’ll work together using Git and GitHub. Don’t worry if you’re new, simply just follow these steps each time you work on the project!
 
