@@ -3,6 +3,7 @@ Using data science and artificial intelligence to develop data-driven solutions 
 
 
 ## 📁 Dream-Tam Repository/Project Structure
+```
 Dream-Team/
 ├── README.md                  # General project info & Git instructions (existing)
 ├── docs/
@@ -24,7 +25,7 @@ Dream-Team/
     ├── manuscript/            # Final manuscript & abstract
     ├── poster/                # Poster drafts & final version
     └── video/                 # Presentation videos
-
+```
 
 ## Getting started + Git Workflow Instructions
 Here’s how we’ll work together using Git and GitHub. Don’t worry if you’re new, simply just follow these steps each time you work on the project!
