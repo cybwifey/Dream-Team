@@ -2,7 +2,7 @@
 Using data science and artificial intelligence to develop data-driven solutions that support aging populations and improve chronic disease management
 
 
-## 📁 Dream-Tam Repository/Project Structure
+## 📁 dream-team Repository/Project Structure
 ```
 Dream-Team/
 ├── README.md                  # General project info & Git instructions (existing)
