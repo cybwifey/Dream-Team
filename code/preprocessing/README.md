@@ -20,7 +20,7 @@ This folder contains scripts for collecting and cleaning raw health data for our
 
 ---
 
-## ▶ How to Run
+## How to Run
 
 1. Open `01_pull_raw_data.R`  
 2. Run all chunks or use `source("01_pull_raw_data.R")`  
