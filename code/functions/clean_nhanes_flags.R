@@ -24,10 +24,4 @@ clean_nhanes_flags <- function(df) {
       str_detect(., artifact_pattern)        ~ NA_character_,
       str_detect(., "^[0-9]+$")              ~ NA_character_,
       . %in% c("Yes", "TRUE", "True", "1")   ~ "1",
-      . %in% c("No", "FALSE", "False", "0")  ~ "0",
-      TRUE                                   ~ NA_character_
-    ))) %>%
-    mutate(across(all_of(flagged_cols), ~ as.numeric(.)))
-
-  return(as.data.frame(df))
-}
+      . %in% c("No", 
