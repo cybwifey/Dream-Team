@@ -40,4 +40,4 @@ merged_df <- df_demo %>%
 # Clean NHANES label artifacts
 source("code/functions/clean_nhanes_flags.R")
 merged_df <- clean_nhanes_flags(merged_df)
-write_csv(merged_df, "data/processed/nhanes_core_merged_201
+write_csv(merged_df, "data/processed/nhanes_core_merged_2011_2012.csv")
