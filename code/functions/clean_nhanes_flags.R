@@ -17,6 +17,7 @@ clean_nhanes_flags <- function(df) {
   "mcq240t"
 )
 
+
   artifact_pattern <- "Bladder|Bone|Skin|Medication|Prostate|Non-melanoma|Gestational|Hypoglycemic|Extreme hunger|Frequent urination|Melanoma"
 
   df <- df %>%
@@ -24,4 +25,4 @@ clean_nhanes_flags <- function(df) {
       str_detect(., artifact_pattern)        ~ NA_character_,
       str_detect(., "^[0-9]+$")              ~ NA_character_,
       . %in% c("Yes", "TRUE", "True", "1")   ~ "1",
-      . %in% c("No", 
+      . %in% c("No",
