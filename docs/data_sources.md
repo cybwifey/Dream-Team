@@ -6,7 +6,7 @@ This file lists all datasets and APIs used in this project for modeling chronic 
 
 ## Public Datasets
 
-### 1. **NHANES (USA)**
+### 1. **NHANES (USA)** (!!!DONE: COLLECTED AND PARSED!!!)
 - **Source**: CDC
 - **URL**: https://www.cdc.gov/nchs/nhanes/
 - **Contains**: VO₂ max, bone density, lab values, disease status
