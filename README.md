@@ -16,6 +16,7 @@ Dream-Team/
 ├── code/
 │   ├── api/                   # Data extraction process
 │   ├── exploratory/           # EDA scripts & notebooks
+│   ├── functions/             # Helper functions (avoiding repeated code segments)
 │   ├── preprocessing/         # Data cleaning scripts
 │   ├── modeling/              # Predictive model development scripts
 │   └── validation/            # Model evaluation scripts
