@@ -1,4 +1,4 @@
-# ai_health_inquiry
+# Important Workflow Details - MUST READ
 Using data science and artificial intelligence to develop data-driven solutions that support aging populations and improve chronic disease management
 
 
@@ -14,7 +14,9 @@ Dream-Team/
 │   ├── raw/                   # Unprocessed original datasets
 │   └── processed/             # Cleaned and preprocessed data
 ├── code/
+│   ├── api/                   # Data extraction process
 │   ├── exploratory/           # EDA scripts & notebooks
+│   ├── functions/             # Helper functions (avoiding repeated code segments)
 │   ├── preprocessing/         # Data cleaning scripts
 │   ├── modeling/              # Predictive model development scripts
 │   └── validation/            # Model evaluation scripts
@@ -36,6 +38,7 @@ To keep our project clean, consistent, and easy to collaborate on, please follow
 - Use **verbs** at the beginning to describe what the script does (e.g., `fetch_`, `clean_`, `train_`, `plot_`)
 - Use the `.R` extension (uppercase **R**, not `.r`)
 - Avoid spaces, uppercase letters, or special characters
+- Please include an Author: *your name here* at the top of your script
 
 ### Folder Naming (project-wide)
 
