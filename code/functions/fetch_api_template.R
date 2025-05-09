@@ -29,6 +29,5 @@ fetch_api_data <- function(url) {
 # source("code/functions/fetch_api_data.R")
 
 # Then call it
+# df_vo2 <- fetch_api_da
 # df_vo2 <- fetch_api_data("https://api.example.org/data?country=CAN&indicator=VO2MAX")
-
-

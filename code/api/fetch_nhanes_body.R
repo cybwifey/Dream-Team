@@ -6,7 +6,6 @@
 # Using the nhanesA package to pull data from CDC's NHANES portal
 # Pulls Body measurements
 
-
 # Data Description	                    File Code for nhanes()
 # Balance	                            "BAX_L"
 # Blood Pressure - Oscillometric	    "BPXO_L"
