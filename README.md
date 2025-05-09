@@ -36,6 +36,7 @@ To keep our project clean, consistent, and easy to collaborate on, please follow
 - Use **verbs** at the beginning to describe what the script does (e.g., `fetch_`, `clean_`, `train_`, `plot_`)
 - Use the `.R` extension (uppercase **R**, not `.r`)
 - Avoid spaces, uppercase letters, or special characters
+- Please include an Author: *your name here* at the top of your script
 
 ### Folder Naming (project-wide)
 
