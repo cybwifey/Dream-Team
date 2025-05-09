@@ -26,6 +26,34 @@ Dream-Team/
     ├── poster/                # Poster drafts & final version
     └── video/                 # Presentation videos
 ```
+## File Naming Convention
+
+To keep our project clean, consistent, and easy to collaborate on, please follow these naming rules:
+
+### General Rules
+
+- Use **snake_case** for all file names: `fetch_nhanes_data.R`
+- Use **verbs** at the beginning to describe what the script does (e.g., `fetch_`, `clean_`, `train_`, `plot_`)
+- Use the `.R` extension (uppercase **R**, not `.r`)
+- Avoid spaces, uppercase letters, or special characters
+
+### Folder Naming (project-wide)
+
+- Use **lowercase-hyphen-separated** names for folders (e.g., `code/preprocessing/`)
+- Keep subfolders specific by function (e.g., `api/`, `functions/`, `modeling/`)
+
+### Examples
+
+| Purpose             | Good Name                      | ❌ Bad Name             |
+|---------------------|--------------------------------|-------------------------|
+| API fetch           | `fetch_strava_data.R`          | `StravaAPI.R`           |
+| Cleaning script     | `clean_vo2max_data.R`          | `VO2Clean.r`            |
+| Modeling            | `train_random_forest.R`        | `TrainModel.R`          |
+| Visualization       | `plot_chronic_disease_rate.R`  | `disease graph.R`       |
+
+Following this format helps everyone on the team stay organized and prevents merge conflicts.
+
+
 
 ## Getting started + Git Workflow Instructions
 Here’s how we’ll work together using Git and GitHub. Don’t worry if you’re new, simply just follow these steps each time you work on the project!
