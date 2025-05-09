@@ -14,6 +14,7 @@ Dream-Team/
 │   ├── raw/                   # Unprocessed original datasets
 │   └── processed/             # Cleaned and preprocessed data
 ├── code/
+│   ├── api/ 
 │   ├── exploratory/           # EDA scripts & notebooks
 │   ├── preprocessing/         # Data cleaning scripts
 │   ├── modeling/              # Predictive model development scripts
