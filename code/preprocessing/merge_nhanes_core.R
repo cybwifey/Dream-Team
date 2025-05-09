@@ -11,6 +11,7 @@
 
 # Load required libraries
 library(tidyverse)
+library(janitor)
 
 # Load CSV cleaning function
 source("code/functions/clean_csv_data.R")
@@ -35,8 +36,8 @@ merged_df <- df_demo %>%
   full_join(df_mcq, by = "seqn") %>%
   full_join(df_diq, by = "seqn")
 
-# Save merged dataset
-write_csv(merged_df, "data/processed/nhanes_core_merged_2011_2012.csv")
 
-# Preview result
-message("✅ Merged dataset saved to data/processed/ (Rows: ", nrow(merged_df), ")")
+# Clean NHANES label artifacts
+source("code/functions/clean_nhanes_flags.R")
+merged_df <- clean_nhanes_flags(merged_df)
+write_csv(merged_df, "data/processed/nhanes_core_merged_201
