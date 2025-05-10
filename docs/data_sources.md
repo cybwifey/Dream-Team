@@ -41,11 +41,12 @@ Our project integrates multiple real-world data sources to support the predictio
 
 ---
 
-### 🔗 API Access Details
-
-- **WHO GHO API:**  
-  https://www.who.int/data/gho/info/gho-odata-api  
-  (Access via `httr` or `jsonlite` in R)
+### API Access Details
+### WHO Indicator: Physical Inactivity (Adults 18+)
+- **Name:** Prevalence of insufficient physical activity among adults aged 18+ years (%)
+- **Indicator Code:** NCD_PA_001
+- **API Endpoint:** https://ghoapi.azureedge.net/api/NCD_PA_001
+- **Official Page:** https://www.who.int/data/gho/data/indicators/indicator-details/GHO/prevalence-of-insufficient-physical-activity-among-adults-aged-18-years-(age-standardized-estimate)-(-)
 
 - **CDC CDI API:**  
   https://chronicdata.cdc.gov/Chronic-Disease-Indicators/U.S.-Chronic-Disease-Indicators-CDI-/g4ie-h725  

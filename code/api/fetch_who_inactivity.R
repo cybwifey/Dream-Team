@@ -7,16 +7,19 @@
 # and saves the raw dataset to data/raw/who_inactivity.csv
 
 
-# Load the reusable api template from the functions folder
-source("code/functions/fetch_api_template.R") # libraries are included here already
+# Install necessary packages and include needed library
+# install.packages("rgho")
+library(rgho)
 
-# Build the URL properly
-base_url <- "https://ghoapi.azureedge.net/api/GHO"
-query <- "$filter=IndicatorCode eq 'NCD_PA_0000000001'"
-full_url <- paste0(base_url, "?", URLencode(query, reserved = TRUE))
+# Retrieve all available indicators
+indicators <- get_gho_indicators()
 
-# Fetch the data
-df_inactivity <- fetch_api_data(full_url)
+# Search for indicators related to physical inactivity
+physical_inactivity_indicators <- indicators[grep("physical inactivity", indicators$Title, ignore.case = TRUE), ]
+print(physical_inactivity_indicators)
 
-# Save locally
-write_csv(df_inactivity, "data/raw/who_inactivity.csv")
+# Replace 'NCD_PA_0000000001' with the actual indicator code identified
+data <- get_gho_data(indicator = "NCD_PA_0000000001")
+
+# View the first few rows of the data
+head(data)
