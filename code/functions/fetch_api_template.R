@@ -12,14 +12,11 @@ library(tidyverse)
 
 # Define the API fetch function
 fetch_api_data <- function(url) {
-  # Make the GET request
   response <- GET(url)
-
-  # Check response status
   if (status_code(response) == 200) {
     data_raw <- content(response, as = "text", encoding = "UTF-8")
     data_json <- fromJSON(data_raw, flatten = TRUE)
-    return(as_tibble(data_json))
+    return(as_tibble(data_json$value))
   } else {
     stop("❌ Failed to fetch data: HTTP ", status_code(response))
   }
