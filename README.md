@@ -66,8 +66,8 @@ Here’s how we’ll work together using Git and GitHub. Don’t worry if you’
 This copies the code from GitHub to your own computer.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai_health_inquiry.git
-cd ai_health_inquiry
+git clone https://github.com/YOUR_USERNAME/Dream-Team.git
+cd Dream-Team
 ```
 
 
