@@ -3,5 +3,32 @@ data/raw/*.csv
 data/processed/*.csv
 
 
-# macOS system file
+# macOS
 .DS_Store
+
+# R/RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+
+# Data outputs (don't version control raw/generated files)
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.sav
+
+# Temporary
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Build/compiled
+*.so
+*.dll
+*.exe
+*.out
+
+
