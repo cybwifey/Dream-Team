@@ -39,6 +39,5 @@ df_mcq <- fetch_and_save_nhanes("MCQ_G", "nhanes_med_conditions_2011_2012")
 # 4. Diabetes status
 df_diq <- fetch_and_save_nhanes("DIQ_G", "nhanes_diabetes_2011_2012")
 
-source("code/functions/clean_nhanes_flags.R")
-merged_df <- clean_nhanes_flags(merged_df)
+
 write_csv(merged_df, "data/processed/nhanes_core_merged_2011_2012.csv")

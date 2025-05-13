@@ -14,7 +14,7 @@ clean_nhanes_flags <- function(df) {
     "diq175k", "diq175l", "diq175s", "diq175t",
     "mcq240v", "mcq240j", "mcq240k", "mcq240bb", "mcq240q",
     "mcq230b", "mcq230c", 
-    "mcq240t"
+    "diq175w"
 )
 
 
