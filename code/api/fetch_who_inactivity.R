@@ -10,9 +10,19 @@
 # Install necessary packages and include needed library
 # install.packages("rgho")
 library(rgho)
+library(httr)
+
 
 # Retrieve all available indicators
-indicators <- get_gho_indicators()
+#indicators <- get_gho_indicators()
+
+#head(indicators)
+
+dimensions <-get_gho_dimensions()
+print(head(dimensions))
+
+gho_vals <- get_gho_values("GHO")
+print(head(gho_vals))
 
 # Search for indicators related to physical inactivity
 physical_inactivity_indicators <- indicators[grep("physical inactivity", indicators$Title, ignore.case = TRUE), ]
