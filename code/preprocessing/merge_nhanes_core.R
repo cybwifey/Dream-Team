@@ -9,35 +9,31 @@
 # - Diabetes Questionnaire (DIQ_G)
 # The result is a unified dataset joined by SEQN and saved to data/processed/.
 
-# Load required libraries
 library(tidyverse)
 library(janitor)
+library(here)
 
-# Load CSV cleaning function
 source("code/functions/clean_csv_data.R")
+source("code/functions/clean_nhanes_flags.R")
 
-# Define file paths
 paths <- list(
-  demo = "data/raw/nhanes_demographics_2011_2012.csv",
-  bp   = "data/raw/nhanes_bp_pulse_2011_2012.csv",
-  mcq  = "data/raw/nhanes_med_conditions_2011_2012.csv",
-  diq  = "data/raw/nhanes_diabetes_2011_2012.csv"
+  demo = here("data/raw/nhanes_demographics_2011_2012.csv"),
+  bp   = here("data/raw/nhanes_bp_pulse_2011_2012.csv"),
+  mcq  = here("data/raw/nhanes_med_conditions_2011_2012.csv"),
+  diq  = here("data/raw/nhanes_diabetes_2011_2012.csv")
 )
 
-# Clean each dataset
 df_demo <- clean_csv_data(paths$demo)
 df_bp   <- clean_csv_data(paths$bp)
 df_mcq  <- clean_csv_data(paths$mcq)
 df_diq  <- clean_csv_data(paths$diq)
 
-# Merge datasets by SEQN (full join preserves rows across all tables)
 merged_df <- df_demo %>%
   full_join(df_bp,  by = "seqn") %>%
   full_join(df_mcq, by = "seqn") %>%
   full_join(df_diq, by = "seqn")
 
-
-# Clean NHANES label artifacts
-source("code/functions/clean_nhanes_flags.R")
 merged_df <- clean_nhanes_flags(merged_df)
-write_csv(merged_df, "data/processed/nhanes_core_merged_201
+
+write_csv(merged_df, here("data/processed/nhanes_core_merged_2011_2012.csv"))
+cat("✅ NHANES core dataset saved. Rows:", nrow(merged_df), "\n")
