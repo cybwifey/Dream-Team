@@ -13,23 +13,23 @@ library(rgho)
 library(httr)
 
 
-# Retrieve all available indicators
-#indicators <- get_gho_indicators()
 
-#head(indicators)
+# Step 1: Fetch the WHO GHO object
+gho_obj <- get_gho_data(code = "NCD_PAA")
 
-dimensions <-get_gho_dimensions()
-print(head(dimensions))
 
-gho_vals <- get_gho_values("GHO")
-print(head(gho_vals))
+# Step 2: Convert to a regular data frame
+df_inactivity <- as.data.frame(gho_obj)
 
-# Search for indicators related to physical inactivity
-physical_inactivity_indicators <- indicators[grep("physical inactivity", indicators$Title, ignore.case = TRUE), ]
-print(physical_inactivity_indicators)
+# Step 3: Filter for Canada
+df_canada <- subset(df_inactivity, Country == "Canada")
 
-# Replace 'NCD_PA_0000000001' with the actual indicator code identified
-data <- get_gho_data(indicator = "NCD_PA_0000000001")
+# Step 4: Get the most recent year
+latest_year <- max(as.numeric(df_canada$Year), na.rm = TRUE)
+df_latest <- subset(df_canada, Year == latest_year)
 
-# View the first few rows of the data
-head(data)
+# Step 5: Save the result
+write.csv(df_latest, "data/raw/who_inactivity_canada_latest.csv", row.names = FALSE)
+
+# Optional: View the result
+print(df_latest)
