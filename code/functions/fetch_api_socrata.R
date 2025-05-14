@@ -1,4 +1,5 @@
-# Title: API Fetch Template (Socrata JSON) – National Health and Data Inquiry 2025
+# Title: API Fetch Template (Socrata JSON)
+#  – National Health and Data Inquiry 2025
 # Author: Andrei Sales
 
 # Description: 
@@ -7,7 +8,7 @@
 
 install.packages("httr")    
 library(httr)               # allows us to use GET()
-
+library(dplyr)
 install.packages("jsonlite")
 library(jsonlite)
 library(tidyverse)
