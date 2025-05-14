@@ -32,3 +32,4 @@ data/processed/*.csv
 *.out
 
 
+.DS_Store
