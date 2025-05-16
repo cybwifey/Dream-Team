@@ -5,17 +5,20 @@
 # Modified fetch_api_template.R to handle Socrata endponts
 # Socrata endpoints return a plain array of records, not data wrapped in "value" field
 
-install.packages("httr")    
+
+# install.packages("httr")   # Avoid installing packages on script
 library(httr)               # allows us to use GET()
 
 install.packages("jsonlite")
 library(jsonlite)
-library(tidyverse)
-library(dplyr)
+library(tidyverse) # Tidyverse includes dplyr, you dont need both
 
 
 # Define the API fetch function
 fetch_api_socrata <- function(url, params = list()) {
+
+  message("Fetching data from: ", url)
+
   # Perform GET with optional query parameters
   response <- GET(url, query = params)
 
@@ -35,6 +38,7 @@ fetch_api_socrata <- function(url, params = list()) {
   } else if (is.list(data_json) && length(data_json) && is.list(data_json[[1]])) {
     return(as_tibble(bind_rows(data_json)))
   } else {
+    warning("Unexpected JSON structure")
     return(as_tibble(data_json))
   }
 }
