@@ -2,6 +2,11 @@
 data/raw/*.csv
 data/processed/*.csv
 
+# Ignore raw data files
+data/raw/*.XPT
+
+# Ignore processed data
+data/processed/*.csv
 
 # macOS
 .DS_Store
