@@ -36,4 +36,5 @@ data/processed/*.csv
 *.exe
 *.out
 
-
+#virtual environment
+*.venv/
