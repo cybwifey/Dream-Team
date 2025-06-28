@@ -1,0 +1,129 @@
+library(allofus)
+library(readr)
+library(dplyr)
+library(purrr)
+library(tidyverse)
+
+activity_data <- read.csv("fitbit_activity_91252870_000000000000.csv")
+heart_rate_0 <- read.csv("fitbit_heart_rate_summary_91252870_000000000000.csv")
+sleep_data <- read.csv("fitbit_sleep_daily_summary_91252870_000000000000.csv")
+measurement_0 <- read.csv("measurement_91252870_000000000000.csv")
+
+activity_summary <- activity_data %>%
+  group_by(person_id) %>%
+  summarize(
+    avg_steps = mean(steps, na.rm = TRUE),
+    avg_calories_out = mean(calories_out, na.rm = TRUE),
+    avg_bmr = mean(calories_bmr, na.rm = TRUE),
+    avg_sedentary = mean(sedentary_minutes, na.rm = TRUE),
+    avg_very_active = mean(very_active_minutes, na.rm = TRUE),
+    avg_lightly_active = mean(lightly_active_minutes, na.rm = TRUE),
+    avg_fairly_active = mean(fairly_active_minutes, na.rm = TRUE),
+    avg_floors = mean(floors, na.rm = TRUE),
+    avg_elevation = mean(elevation, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+heart_rate_summary <- heart_rate_0 %>%
+  group_by(person_id) %>%
+  summarize(
+    avg_hr_min = mean(min_heart_rate, na.rm = TRUE),
+    avg_hr_max = mean(max_heart_rate, na.rm = TRUE),
+    total_minutes_in_zone = sum(minute_in_zone, na.rm = TRUE),
+    avg_calories_hr = mean(calorie_count, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# ------------------------------
+# Clean and summarize sleep_data
+# ------------------------------
+sleep_summary <- sleep_data %>%
+  group_by(person_id) %>%
+  summarize(
+    avg_sleep_minutes = mean(minute_asleep, na.rm = TRUE),
+    avg_time_in_bed = mean(minute_in_bed, na.rm = TRUE),
+    avg_deep_sleep = mean(minute_deep, na.rm = TRUE),
+    avg_light_sleep = mean(minute_light, na.rm = TRUE),
+    avg_rem_sleep = mean(minute_rem, na.rm = TRUE),
+    avg_wake_minutes = mean(minute_wake, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# ------------------------------
+# Clean and reshape measurement_data
+# ------------------------------
+measurement_summary <- measurement_0 %>%
+  select(person_id, standard_concept_name, value_as_number) %>%
+  group_by(person_id, standard_concept_name) %>%
+  summarize(avg_value = mean(value_as_number, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = standard_concept_name, values_from = avg_value)
+
+# ------------------------------
+# Merge all summaries by person_id
+# ------------------------------
+person_level_data <- activity_summary %>%
+  full_join(heart_rate_summary, by = "person_id") %>%
+  full_join(sleep_summary, by = "person_id") %>%
+  full_join(measurement_summary, by = "person_id")
+
+# ------------------------------
+# Check result
+# ------------------------------
+
+summary(person_level_data)
+
+length(unique(person_level_data$person_id))
+
+
+# 1) Connect & reference
+con           <- aou_connect()
+condition_tbl <- tbl(con, "condition_occurrence")
+
+# 2) Your person IDs of interest
+person_ids <- person_level_data$person_id
+
+# Your vector of condition IDs to keep
+condition_ids <- c(80502, 316139, 4140090, 4182210)
+
+# 3) Build summary but only for those condition_concept_ids
+conditions_count <- condition_tbl %>%
+  filter(person_id %in% person_ids,
+         condition_concept_id %in% condition_ids) %>%   # <---- filter here
+  distinct(person_id, condition_concept_id) %>%
+  group_by(person_id) %>%
+  summarise(unique_conditions = n(), .groups = "drop") %>%
+  collect()
+
+# 4) (Optional) Save so you never recompute it
+saveRDS(conditions_count, "conditions_count.rds")
+
+library(bit64)
+
+condition_wide <- condition_tbl %>%
+  filter(
+    person_id %in% person_ids,
+    condition_concept_id %in% condition_ids
+  ) %>%
+  distinct(person_id, condition_concept_id) %>%
+  mutate(has_condition = 1L) %>%
+  collect() %>%
+  pivot_wider(
+    names_from = condition_concept_id,
+    values_from = has_condition,
+    names_prefix = "has_",
+    values_fill = 0
+  )
+
+cols <- c("has_80502", "has_316139", "has_4140090", "has_4182210")
+
+joined_data <- joined_data %>%
+  mutate(across(all_of(cols),
+                ~replace_na(.x, 0)))
+
+rename(joined_data, `BMI` = `Body mass index (BMI) [Ratio]`, 
+       `diastolic_bp` = `Diastolic blood pressure`, 
+       `systolic_bp` = `Systolic blood pressure`, 
+       `osteoperosis` = `has_80502`, 
+       `heart_failure` =  `has_316139`, 
+       `parkinsonism` = `has_4140090`,
+       `dementia` = `has_4182210`)
